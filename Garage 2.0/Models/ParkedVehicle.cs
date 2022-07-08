@@ -7,7 +7,7 @@ namespace Garage_2._0.Models
         public int Id { get; set; }
 
         [DisplayName("Fordonstyp")]
-        public string? Type { get; set; }
+        public VehicleTypes? Type { get; set; }
 
         [DisplayName("Registreringsnummer")]
         public string? RegNbr  { get; set; }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage_2._0.Data;
 using Garage_2._0.Models;
+using Garage_2._0.ViewModels;
 
 namespace Garage_2._0.Controllers
 {
@@ -16,15 +17,37 @@ namespace Garage_2._0.Controllers
 
         public ParkedVehiclesController(Garage_2_0Context context)
         {
+            ArgumentNullException.ThrowIfNull(context);
             _context = context;
         }
+
+        public async Task<IActionResult> Filter(IndexViewModel indexViewModel)
+        {
+            var parkedVehicles = string.IsNullOrWhiteSpace(indexViewModel.RegNbr) ?
+                _context.ParkedVehicle :
+                _context.ParkedVehicle.Where(v => v.RegNbr!.StartsWith(indexViewModel.RegNbr));
+
+                parkedVehicles = indexViewModel.VehicleType == null ?
+                parkedVehicles :
+                parkedVehicles.Where(v => v.Type == indexViewModel.VehicleType);
+
+            var model = new IndexViewModel
+            {
+                ParkedVehicles = await parkedVehicles.ToListAsync()
+
+            };
+            return View(nameof(Index), model);
+        }
+
 
         // GET: ParkedVehicles
         public async Task<IActionResult> Index()
         {
-              return _context.ParkedVehicle != null ? 
-                          View(await _context.ParkedVehicle.ToListAsync()) :
-                          Problem("Entity set 'Garage_2_0Context.ParkedVehicle'  is null.");
+            var model = new IndexViewModel()
+            {
+                ParkedVehicles = await _context.ParkedVehicle.ToListAsync()
+            };
+            return View(model);
         }
 
         // GET: ParkedVehicles/Details/5
