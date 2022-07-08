@@ -15,5 +15,7 @@ namespace Garage_2._0.Data
         }
 
         public DbSet<Garage_2._0.Models.ParkedVehicle>? ParkedVehicle { get; set; }
+
+      
     }
 }

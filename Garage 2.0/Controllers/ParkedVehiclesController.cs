@@ -27,6 +27,21 @@ namespace Garage_2._0.Controllers
                           Problem("Entity set 'Garage_2_0Context.ParkedVehicle'  is null.");
         }
 
+        public async Task<IActionResult> Overview()
+        {
+            var vehicles = _context.ParkedVehicle;
+            var viewModel = await vehicles.Select(v => new OverviewViewModel
+            {
+                Id = v.Id,
+                Type = v.Type,
+                ParkTime = v.ParkTime,
+                RegNbr = v.RegNbr,
+                ParkedTime = (DateTime.Now - v.ParkTime).TotalMinutes
+            }).ToListAsync();
+
+            return View(viewModel);
+        }
+
         // GET: ParkedVehicles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
