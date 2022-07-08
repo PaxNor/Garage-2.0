@@ -1,15 +1,34 @@
-﻿namespace Garage_2._0.Models
+﻿using System.ComponentModel;
+
+namespace Garage_2._0.Models
 {
     public class  ParkedVehicle
     {
         public int Id { get; set; }
-        public string? Type { get; set; }
-        public string? RegNbr  { get; set; }
-        public string? Color { get; set; } 
-        public string? Brand { get; set; }  
-        public string? Model { get; set; }
-        public int? wheelCount { get; set; }
-        public DateTime ParkTime { get; set; }
 
+        [DisplayName("Fordonstyp")]
+        public string? Type { get; set; }
+
+        [DisplayName("Registreringsnummer")]
+        public string? RegNbr  { get; set; }
+
+        [DisplayName("Färg")]
+        public string? Color { get; set; }
+
+        [DisplayName("Märke")]
+        public string? Brand { get; set; }
+
+        [DisplayName("Modell")]
+        public string? Model { get; set; }
+
+        [DisplayName("Hjulantal")]
+        public int? wheelCount { get; set; }
+
+        [DisplayName("Ankomst")]
+        public DateTime ParkTime { get; private set; }
+
+        public ParkedVehicle() {
+            ParkTime = DateTime.Now;
+        }
     }
 }
