@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public string? RegNbr { get; set; }
-        public string? Type { get; set; }
+        public VehicleTypes? Type { get; set; }
 
         public DateTime ParkTime { get; set; }
         public double ParkedTime  { get; set; }
