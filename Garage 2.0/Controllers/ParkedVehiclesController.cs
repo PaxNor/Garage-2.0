@@ -60,6 +60,16 @@ namespace Garage_2._0.Controllers
         {
             if (ModelState.IsValid)
             {
+                foreach (var vehicle in _context.ParkedVehicle) {
+                    if (parkedVehicle.RegNbr == vehicle.RegNbr) {
+                        return View();
+                    }
+                }
+
+                //if(_context.ParkedVehicle.Where(v => v.RegNbr == parkedVehicle.RegNbr).Any()) {
+                //    Console.WriteLine("Vehicle exist in garage!");
+                //}
+
                 _context.Add(parkedVehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
