@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 
 namespace Garage_2._0.Models
 {
@@ -10,6 +11,7 @@ namespace Garage_2._0.Models
         public string? Type { get; set; }
 
         [DisplayName("Registreringsnummer")]
+        //[Remote()]
         public string? RegNbr  { get; set; }
 
         [DisplayName("Färg")]
