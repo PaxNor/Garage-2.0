@@ -1,12 +1,12 @@
 ﻿@model Garage_2._0.Models.ParkedVehicle
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Checkout";
 }
 
-<h1>Checka ut</h1>
+<h1>Checkout</h1>
 
-<h3>Är du säker på att du vill checka ut detta fordon?</h3>
+<h3> Är du säker på att checkaout ditt fordon?</h3>
 <div>
     <h4>Parkerat fordon</h4>
     <hr />
@@ -55,9 +55,9 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
+    <form asp-action="Checkout">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Checka ut" class="btn btn-danger" /> |
-        <a asp-action="Index">Tillbaka till garaget</a>
+        <input type="submit" value="Checkout" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>
