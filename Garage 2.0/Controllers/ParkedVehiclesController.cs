@@ -61,7 +61,7 @@ namespace Garage_2._0.Controllers
         }
 
         // GET: ParkedVehicles/Create
-        public IActionResult Create()
+        public IActionResult Checkin()
         {
             return View();
         }
@@ -71,7 +71,7 @@ namespace Garage_2._0.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,RegNbr,Color,Brand,Model,wheelCount,ParkTime")] ParkedVehicle parkedVehicle)
+        public async Task<IActionResult> Checkin([Bind("Id,Type,RegNbr,Color,Brand,Model,wheelCount,ParkTime")] ParkedVehicle parkedVehicle)
         {
             // Reg number check
             foreach (var vehicle in _context.ParkedVehicle) {
@@ -141,7 +141,7 @@ namespace Garage_2._0.Controllers
         }
 
         // GET: ParkedVehicles/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Checkout(int? id)
         {
             if (id == null || _context.ParkedVehicle == null)
             {
@@ -159,7 +159,7 @@ namespace Garage_2._0.Controllers
         }
 
         // POST: ParkedVehicles/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Checkout")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
