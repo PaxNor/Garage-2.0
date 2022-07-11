@@ -21,22 +21,40 @@ namespace Garage_2._0.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Filter(IndexViewModel indexViewModel)
+        //public async Task<IActionResult> Filter(IndexViewModel indexViewModel)
+        //{
+        //    var parkedVehicles = string.IsNullOrWhiteSpace(indexViewModel.RegNbr) ?
+        //        _context.ParkedVehicle :
+        //        _context.ParkedVehicle.Where(v => v.RegNbr!.StartsWith(indexViewModel.RegNbr));
+
+        //        parkedVehicles = indexViewModel.VehicleType == null ?
+        //        parkedVehicles :
+        //        parkedVehicles.Where(v => v.Type == indexViewModel.VehicleType);
+
+        //    var model = new IndexViewModel
+        //    {
+        //        ParkedVehicles = await parkedVehicles.ToListAsync()
+
+        //    };
+        //    return View(nameof(Index), model);
+        //}
+
+        public async Task<IActionResult> Filter(OverviewViewModel overviewViewModel)
         {
-            var parkedVehicles = string.IsNullOrWhiteSpace(indexViewModel.RegNbr) ?
+            var parkedVehicles = string.IsNullOrWhiteSpace(overviewViewModel.RegNbr) ?
                 _context.ParkedVehicle :
-                _context.ParkedVehicle.Where(v => v.RegNbr!.StartsWith(indexViewModel.RegNbr));
+                _context.ParkedVehicle.Where(v => v.RegNbr!.StartsWith(overviewViewModel.RegNbr));
 
-                parkedVehicles = indexViewModel.VehicleType == null ?
-                parkedVehicles :
-                parkedVehicles.Where(v => v.Type == indexViewModel.VehicleType);
+            parkedVehicles = overviewViewModel.VehicleType == null ?
+            parkedVehicles :
+            parkedVehicles.Where(v => v.Type == overviewViewModel.VehicleType);
 
-            var model = new IndexViewModel
+            var model = new OverviewViewModel
             {
                 ParkedVehicles = await parkedVehicles.ToListAsync()
 
             };
-            return View(nameof(Index), model);
+            return View(nameof(Overview), model);
         }
 
 
@@ -52,17 +70,12 @@ namespace Garage_2._0.Controllers
 
         public async Task<IActionResult> Overview()
         {
-            var vehicles = _context.ParkedVehicle;
-            var viewModel = await vehicles.Select(v => new OverviewViewModel
-            {
-                Id = v.Id,
-                Type = v.Type,
-                ParkTime = v.ParkTime,
-                RegNbr = v.RegNbr,
-                ParkedTime = (DateTime.Now - v.ParkTime).TotalMinutes
-            }).ToListAsync();
 
-            return View(viewModel);
+            var model = new OverviewViewModel()
+            {
+                ParkedVehicles = await _context.ParkedVehicle.ToListAsync()
+            };
+            return View(model);
         }
 
         // GET: ParkedVehicles/Details/5
