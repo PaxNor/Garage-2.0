@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ParkedVehicle>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Checka in nytt fordon</a>
 </p>
 <table class="table">
     <thead>
@@ -11,18 +11,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RegNbr)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brand)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.wheelCount)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ParkTime)
@@ -40,24 +28,12 @@
                 @Html.DisplayFor(modelItem => item.RegNbr)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.wheelCount)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ParkTime)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Checka ut</a>
             </td>
         </tr>
 }
