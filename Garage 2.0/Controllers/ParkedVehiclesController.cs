@@ -58,18 +58,15 @@ namespace Garage_2._0.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Type,RegNbr,Color,Brand,Model,wheelCount,ParkTime")] ParkedVehicle parkedVehicle)
         {
+            // Reg number check
+            foreach (var vehicle in _context.ParkedVehicle) {
+                if (parkedVehicle.RegNbr == vehicle.RegNbr) {
+                    ModelState.AddModelError("RegNbr", "Fordonet finns redan parkerat i garaget.");
+                }
+            }
+
             if (ModelState.IsValid)
             {
-                foreach (var vehicle in _context.ParkedVehicle) {
-                    if (parkedVehicle.RegNbr == vehicle.RegNbr) {
-                        return View();
-                    }
-                }
-
-                //if(_context.ParkedVehicle.Where(v => v.RegNbr == parkedVehicle.RegNbr).Any()) {
-                //    Console.WriteLine("Vehicle exist in garage!");
-                //}
-
                 _context.Add(parkedVehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
