@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Garage_2._0.Models
 {
@@ -6,6 +9,7 @@ namespace Garage_2._0.Models
     {
         public int Id { get; set; }
 
+        [Required]
         [DisplayName("Fordonstyp")]
         public VehicleTypes? Type { get; set; }
 
@@ -21,6 +25,7 @@ namespace Garage_2._0.Models
         [DisplayName("Modell")]
         public string? Model { get; set; }
 
+        [Range(2, 6)]
         [DisplayName("Hjulantal")]
         public int? wheelCount { get; set; }
 
