@@ -181,6 +181,10 @@ namespace Garage_2._0.Controllers
             return View(parkedVehicle);
         }
 
+        public IActionResult Receipt(int id) {
+            return View();
+        }
+
         // POST: ParkedVehicles/Delete/5
         [HttpPost, ActionName("Checkout")]
         [ValidateAntiForgeryToken]
@@ -197,6 +201,11 @@ namespace Garage_2._0.Controllers
             }
             
             await _context.SaveChangesAsync();
+
+
+            // create ReceiptViewModel from parkedVehicle
+
+
             return RedirectToAction(nameof(Index));
         }
 
