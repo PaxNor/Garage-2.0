@@ -3,8 +3,6 @@ TODO:
 	
 	Grundfunktionalitet
 
-	- Vid uthämtning av fordon ska kvitto erbjudas.
-
 	Utseende
 
 	- Språk och instruktioner skall vara anpassade för användningen
