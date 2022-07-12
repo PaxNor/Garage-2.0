@@ -1,12 +1,13 @@
 ﻿@model Garage_2._0.Models.ParkedVehicle
 
+
 @{
     ViewData["Title"] = "Checkin";
 }
 
 <h1>Checkin</h1>
 
-<h4>ParkedVehicle</h4>
+<h4>Parkerat fordon</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
+                <select class = "form-control" name = "type" asp-items = "@Html.GetEnumSelectList<VehicleTypes>()"></select>
                 <span asp-validation-for="Type" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -41,12 +42,6 @@
                 <label asp-for="wheelCount" class="control-label"></label>
                 <input asp-for="wheelCount" class="form-control" />
                 <span asp-validation-for="wheelCount" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="ParkTime" class="control-label"></label>
-                <input asp-for="ParkTime" class="form-control" />
-                <span asp-validation-for="ParkTime" class="text-danger"></span>
             </div>
 
             <div class="form-group">

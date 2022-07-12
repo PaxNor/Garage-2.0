@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ParkedVehicle>
+
+<p>
+    <a asp-action="Checkin">Checka in</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegNbr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParkTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNbr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                <a asp-action="Checkout" asp-route-id="@item.Id">Checka ut</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
