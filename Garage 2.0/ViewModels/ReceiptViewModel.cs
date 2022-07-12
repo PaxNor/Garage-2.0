@@ -23,7 +23,7 @@ namespace Garage_2._0.ViewModels
         [DisplayName("Parkerad tid")]
         public string DisplayTime { get; private set; }
 
-        [DisplayName("Avgift")]
+        [DisplayName("Avgiftsbelagd tid")]
         public int BillableTime { get; private set; }
 
         public ReceiptViewModel(DateTime arrival, string regNbr, string color, string brand) {
