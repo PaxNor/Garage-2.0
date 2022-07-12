@@ -10,8 +10,8 @@ TODO:
 	
 	Input-kontroll / Validering
 
-	- Viss input vill vi inte att användaren skall kunna skriva hur de vill i fritext.
-	- Inte för långa namn.
-	- Inga minus värden på antal hjul osv.
+	- Viss input vill vi inte att användaren skall kunna skriva hur de vill i fritext.													    
+	- Inte för långa namn.																												    ✓
+	- Inga minus värden på antal hjul osv.																								    ✓
 
 	Övrigt
