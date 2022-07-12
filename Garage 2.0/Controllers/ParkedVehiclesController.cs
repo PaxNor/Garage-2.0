@@ -221,10 +221,9 @@ namespace Garage_2._0.Controllers
             vm.BoatCount    = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Båt).Count();
 
             vm.TotalWheelCount = _context.ParkedVehicle.Select(v => v.wheelCount).Sum();
-            //vm.TotalGarageIncome = _context
-            //                            .ParkedVehicle
-            //                            .Select(v => (int)Math.Ceiling( (DateTime.Now - v.ParkTime).TotalMinutes / 60) )
-            //                            .Sum();
+            vm.TotalGarageIncome = _context.ParkedVehicle
+                                        .Select(v => (int)Math.Ceiling((DateTime.Now - v.ParkTime).TotalMinutes / 60))
+                                        .Sum();
             return View(vm);
         }
 
