@@ -212,6 +212,9 @@ namespace Garage_2._0.Controllers
 
         public IActionResult Stats() {
             var vm = new StatsViewModel();
+            const int rate = 50;
+
+            //vm.TotalGarageIncome = 0; // ?
 
             vm.CarCount     = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Bil).Count();
             vm.TruckCount   = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Lastbil).Count();
@@ -221,9 +224,15 @@ namespace Garage_2._0.Controllers
             vm.BoatCount    = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Båt).Count();
 
             vm.TotalWheelCount = _context.ParkedVehicle.Select(v => v.wheelCount).Sum();
-            vm.TotalGarageIncome = _context.ParkedVehicle
-                                        .Select(v => (int)Math.Ceiling((DateTime.Now - v.ParkTime).TotalMinutes / 60))
-                                        .Sum();
+
+            //vm.TotalGarageIncome = _context.ParkedVehicle
+            //                            .Select(v => (int)Math.Ceiling((DateTime.Now - v.ParkTime).TotalMinutes / 60))
+            //                            .Sum();
+
+            foreach (var vehicle in _context.ParkedVehicle) {
+                vm.TotalGarageIncome += (int)Math.Ceiling((DateTime.Now - vehicle.ParkTime).TotalMinutes / 60) * rate;
+            }
+
             return View(vm);
         }
 

@@ -21,7 +21,7 @@ namespace Garage_2._0.ViewModels
         public int? TotalWheelCount { get; set; }
 
         [DisplayName("Totala intäkter")]
-        public int? TotalGarageIncome { get; set; }
+        public int TotalGarageIncome { get; set; }
 
     }
 }
