@@ -8,6 +8,5 @@
         Buss,
         Motorcykel,
         Cykel
-
    }
 }
