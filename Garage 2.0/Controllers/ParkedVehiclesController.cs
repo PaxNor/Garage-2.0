@@ -181,6 +181,10 @@ namespace Garage_2._0.Controllers
             return View(parkedVehicle);
         }
 
+        public IActionResult Receipt(ReceiptViewModel vm) {
+            return View(vm);
+        }
+
         // POST: ParkedVehicles/Delete/5
         [HttpPost, ActionName("Checkout")]
         [ValidateAntiForgeryToken]
@@ -191,13 +195,19 @@ namespace Garage_2._0.Controllers
                 return Problem("Entity set 'Garage_2_0Context.ParkedVehicle'  is null.");
             }
             var parkedVehicle = await _context.ParkedVehicle.FindAsync(id);
-            if (parkedVehicle != null)
-            {
+            if (parkedVehicle != null) {
                 _context.ParkedVehicle.Remove(parkedVehicle);
+                await _context.SaveChangesAsync();
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            else
+                return NotFound();
+          
+            var receipt = new ReceiptViewModel(parkedVehicle.ParkTime,
+                                               parkedVehicle.RegNbr!,
+                                               parkedVehicle.Color!,
+                                               parkedVehicle.Brand!);
+
+            return View("Receipt", receipt);
         }
 
         private bool ParkedVehicleExists(int id)
