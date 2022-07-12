@@ -10,18 +10,18 @@ TODO:
 	
 	Input-kontroll / Validering
 
-	- Viss input vill vi inte att användaren skall kunna skriva hur de vill i fritext.
-	- Inte för långa namn.
-	- Inga minus värden på antal hjul osv.
+	- Viss input vill vi inte att användaren skall kunna skriva hur de vill i fritext.													    
+	- Inte för långa namn.																												    ✓
+	- Inga minus värden på antal hjul osv.																								    ✓
 
 
 	Övrigt
 
-	- Fordonstyp skall inte skrivas in manuellt, skall finnas som en dropdownlista som bara innehåller giltiga fordonstyper.
+	- Fordonstyp skall inte skrivas in manuellt, skall finnas som en dropdownlista som bara innehåller giltiga fordonstyper.                ✓
 	- Översiktsvy med egen ViewModel
 	- En tidsstämpel för när fordonet parkerades, ska inte matas in manuellt.
 	- Kvitto när fordon checkas ut, med egen vy och ViewModel
-	- Sökfunktion på registreringsnummer
+	- Sökfunktion på registreringsnummer																									✓
 
 
 
