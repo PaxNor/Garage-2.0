@@ -21,7 +21,10 @@ namespace Garage_2._0.ViewModels
         public DateTime Departure { get; private set; }
 
         [DisplayName("Parkerad tid")]
-        public double ElapsedTime { get; private set; }
+        public string DisplayTime { get; private set; }
+
+        [DisplayName("Avgift")]
+        public int BillableTime { get; private set; }
 
         public ReceiptViewModel(DateTime arrival, string regNbr, string color, string brand) {
             Arrival = arrival;
@@ -29,6 +32,13 @@ namespace Garage_2._0.ViewModels
             RegNbr = regNbr;
             Color = color;
             Brand = brand;
+
+            double elapsedTime = (Departure - Arrival).TotalSeconds;
+            BillableTime = (int)Math.Ceiling(elapsedTime);
+
+            int hours = (int)elapsedTime;
+            int minutes = (int)((elapsedTime - hours) * 60);
+            DisplayTime = String.Format("{0}:{1}", hours, minutes);
         }
 
     }
