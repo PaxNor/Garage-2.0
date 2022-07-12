@@ -38,7 +38,11 @@ namespace Garage_2._0.ViewModels
 
             int hours = (int)elapsedTime / 60;
             int minutes = (int)(elapsedTime - (hours * 60));
-            DisplayTime = String.Format("{0}:{1}", hours, minutes);
+            DisplayTime = String.Format("{0} timma{1} {2} minut{3}", hours,
+                                                                     hours != 1 ? "r" : "",
+                                                                     minutes,
+                                                                     minutes != 1 ? "er" : "");
+
         }
 
     }
