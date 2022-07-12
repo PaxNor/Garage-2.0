@@ -15,7 +15,7 @@ namespace Garage_2._0.ViewModels
         public string? Brand { get; set; }
 
         [DisplayName("Ankomst")]
-        public DateTime Arrival { get; private set; }
+        public DateTime Arrival { get; set; }
 
         [DisplayName("Avresa")]
         public DateTime Departure { get; private set; }
@@ -33,11 +33,11 @@ namespace Garage_2._0.ViewModels
             Color = color;
             Brand = brand;
 
-            double elapsedTime = (Departure - Arrival).TotalSeconds;
-            BillableTime = (int)Math.Ceiling(elapsedTime);
+            double elapsedTime = (Departure - Arrival).TotalMinutes;
+            BillableTime = (int)Math.Ceiling(elapsedTime / 60);
 
-            int hours = (int)elapsedTime;
-            int minutes = (int)((elapsedTime - hours) * 60);
+            int hours = (int)elapsedTime / 60;
+            int minutes = (int)(elapsedTime - (hours * 60));
             DisplayTime = String.Format("{0}:{1}", hours, minutes);
         }
 

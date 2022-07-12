@@ -181,9 +181,22 @@ namespace Garage_2._0.Controllers
             return View(parkedVehicle);
         }
 
-        public IActionResult Receipt(int id) {
-            return View();
+        /*
+         * RegNbr=abc%20555&
+         * Color=vit&
+         * Brand=saab&
+         * Arrival=07%2F12%2F2022%2007%3A39%3A32&
+         * Departure=07%2F12%2F2022%2007%3A39%3A38&
+         * DisplayTime=5%3A18&
+         * BillableTime=6
+         */
+        public IActionResult Receipt(ReceiptViewModel vm) {
+            return View(vm);
         }
+
+        //public IActionResult Receipt() {
+        //    return View();
+        //}
 
         // POST: ParkedVehicles/Delete/5
         [HttpPost, ActionName("Checkout")]
@@ -195,18 +208,38 @@ namespace Garage_2._0.Controllers
                 return Problem("Entity set 'Garage_2_0Context.ParkedVehicle'  is null.");
             }
             var parkedVehicle = await _context.ParkedVehicle.FindAsync(id);
-            if (parkedVehicle != null)
-            {
+            if (parkedVehicle != null) {
                 _context.ParkedVehicle.Remove(parkedVehicle);
+                await _context.SaveChangesAsync();
             }
-            
-            await _context.SaveChangesAsync();
+            else
+                return NotFound();
+
 
 
             // create ReceiptViewModel from parkedVehicle
+            var receipt = new ReceiptViewModel(parkedVehicle.ParkTime,
+                                               parkedVehicle.RegNbr!,
+                                               parkedVehicle.Color!,
+                                               parkedVehicle.Brand!);
 
+            return View("Receipt", receipt);
 
-            return RedirectToAction(nameof(Index));
+            //var receipt = new ReceiptViewModel {
+            //    RegNbr = parkedVehicle.RegNbr,
+            //    Color = parkedVehicle.Color,
+            //    Brand = parkedVehicle.Brand,
+            //    Arrival = parkedVehicle.ParkTime
+            //};
+
+            // fungerar
+            //return RedirectToAction("Receipt", "ParkedVehicles", new {
+            //    RegNbr = parkedVehicle.RegNbr,
+            //    Color = parkedVehicle.Color,
+            //    Brand = parkedVehicle.Brand,
+            //    Arrival = parkedVehicle.ParkTime
+            //});
+            //return RedirectToAction(nameof(Index));
         }
 
         private bool ParkedVehicleExists(int id)
