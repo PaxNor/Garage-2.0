@@ -181,22 +181,9 @@ namespace Garage_2._0.Controllers
             return View(parkedVehicle);
         }
 
-        /*
-         * RegNbr=abc%20555&
-         * Color=vit&
-         * Brand=saab&
-         * Arrival=07%2F12%2F2022%2007%3A39%3A32&
-         * Departure=07%2F12%2F2022%2007%3A39%3A38&
-         * DisplayTime=5%3A18&
-         * BillableTime=6
-         */
         public IActionResult Receipt(ReceiptViewModel vm) {
             return View(vm);
         }
-
-        //public IActionResult Receipt() {
-        //    return View();
-        //}
 
         // POST: ParkedVehicles/Delete/5
         [HttpPost, ActionName("Checkout")]
@@ -214,32 +201,13 @@ namespace Garage_2._0.Controllers
             }
             else
                 return NotFound();
-
-
-
-            // create ReceiptViewModel from parkedVehicle
+          
             var receipt = new ReceiptViewModel(parkedVehicle.ParkTime,
                                                parkedVehicle.RegNbr!,
                                                parkedVehicle.Color!,
                                                parkedVehicle.Brand!);
 
             return View("Receipt", receipt);
-
-            //var receipt = new ReceiptViewModel {
-            //    RegNbr = parkedVehicle.RegNbr,
-            //    Color = parkedVehicle.Color,
-            //    Brand = parkedVehicle.Brand,
-            //    Arrival = parkedVehicle.ParkTime
-            //};
-
-            // fungerar
-            //return RedirectToAction("Receipt", "ParkedVehicles", new {
-            //    RegNbr = parkedVehicle.RegNbr,
-            //    Color = parkedVehicle.Color,
-            //    Brand = parkedVehicle.Brand,
-            //    Arrival = parkedVehicle.ParkTime
-            //});
-            //return RedirectToAction(nameof(Index));
         }
 
         private bool ParkedVehicleExists(int id)
