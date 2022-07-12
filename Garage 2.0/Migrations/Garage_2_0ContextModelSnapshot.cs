@@ -45,7 +45,7 @@ namespace Garage_2._0.Migrations
                     b.Property<string>("RegNbr")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Type")
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.Property<int?>("wheelCount")
