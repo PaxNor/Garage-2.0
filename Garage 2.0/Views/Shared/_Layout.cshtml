@@ -15,7 +15,7 @@
         case  "Checkin" :
             checkinClass = "active";
             break;
-        case  "Privacy" :
+        case  "Stats" :
             privacyClass = "active";
             break;
 
@@ -48,10 +48,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link @privacyClass text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @indexClass text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @indexClass text-dark" asp-area="" asp-controller="ParkedVehicles" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @checkinClass text-dark" asp-area="" asp-controller="ParkedVehicles" asp-action="Checkin">Checka in</a>
@@ -59,6 +56,10 @@
                         <li class="nav-item">
                             <a class="nav-link @overviewClass text-dark" asp-area="" asp-controller="ParkedVehicles" asp-action="Overview">Overview</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link @privacyClass text-dark" asp-area="" asp-controller="ParkedVehicles" asp-action="Stats">Stats</a>
+                        </li>
+
                     </ul>
 
                    <!-- <ul class="navbar-nav flex-grow-1">
