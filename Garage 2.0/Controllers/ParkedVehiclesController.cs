@@ -214,8 +214,6 @@ namespace Garage_2._0.Controllers
             var vm = new StatsViewModel();
             const int rate = 50;
 
-            //vm.TotalGarageIncome = 0; // ?
-
             vm.CarCount     = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Bil).Count();
             vm.TruckCount   = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Lastbil).Count();
             vm.BusCount     = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Buss).Count();
