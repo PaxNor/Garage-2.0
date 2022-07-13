@@ -210,6 +210,30 @@ namespace Garage_2._0.Controllers
             return View("Receipt", receipt);
         }
 
+        public IActionResult Stats() {
+            var vm = new StatsViewModel();
+            const int rate = 50;
+
+            vm.CarCount     = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Bil).Count();
+            vm.TruckCount   = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Lastbil).Count();
+            vm.BusCount     = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Buss).Count();
+            vm.BikeCount    = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Cykel).Count();
+            vm.MotorCycleCount = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Motorcykel).Count();
+            vm.BoatCount    = _context.ParkedVehicle.Where(v => v.Type == VehicleTypes.Båt).Count();
+
+            vm.TotalWheelCount = _context.ParkedVehicle.Select(v => v.wheelCount).Sum();
+
+            //vm.TotalGarageIncome = _context.ParkedVehicle
+            //                            .Select(v => (int)Math.Ceiling((DateTime.Now - v.ParkTime).TotalMinutes / 60))
+            //                            .Sum();
+
+            foreach (var vehicle in _context.ParkedVehicle) {
+                vm.TotalGarageIncome += (int)Math.Ceiling((DateTime.Now - vehicle.ParkTime).TotalMinutes / 60) * rate;
+            }
+
+            return View(vm);
+        }
+
         private bool ParkedVehicleExists(int id)
         {
           return (_context.ParkedVehicle?.Any(e => e.Id == id)).GetValueOrDefault();
