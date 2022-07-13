@@ -7,11 +7,11 @@
 
 <h1>Garage</h1>
 
-<form asp-action = "Filter" asp-controller = "ParkedVehicles" method = "get">
+<form class = "my-3" asp-action = "Filter" asp-controller = "ParkedVehicles" method = "get">
 
 <div class = "input-group mb-3">
     <input type = "text" class = "form-control" asp-for = "RegNbr" placeholder = "Sök efter registreringsnummer..." />
-    <div class = "input-group-append">
+    <div class = "input-group-append mx-1">
 
     <select class = "form-control" asp-for = "VehicleType" asp-items = "@await service.GetVehicleTypesAsync()">
 
