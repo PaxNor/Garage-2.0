@@ -21,40 +21,22 @@ namespace Garage_2._0.Controllers
             _context = context;
         }
 
-        //public async Task<IActionResult> Filter(IndexViewModel indexViewModel)
-        //{
-        //    var parkedVehicles = string.IsNullOrWhiteSpace(indexViewModel.RegNbr) ?
-        //        _context.ParkedVehicle :
-        //        _context.ParkedVehicle.Where(v => v.RegNbr!.StartsWith(indexViewModel.RegNbr));
-
-        //        parkedVehicles = indexViewModel.VehicleType == null ?
-        //        parkedVehicles :
-        //        parkedVehicles.Where(v => v.Type == indexViewModel.VehicleType);
-
-        //    var model = new IndexViewModel
-        //    {
-        //        ParkedVehicles = await parkedVehicles.ToListAsync()
-
-        //    };
-        //    return View(nameof(Index), model);
-        //}
-
-        public async Task<IActionResult> Filter(OverviewViewModel overviewViewModel)
+        public async Task<IActionResult> Filter(IndexViewModel indexViewModel)
         {
-            var parkedVehicles = string.IsNullOrWhiteSpace(overviewViewModel.RegNbr) ?
+            var parkedVehicles = string.IsNullOrWhiteSpace(indexViewModel.RegNbr) ?
                 _context.ParkedVehicle :
-                _context.ParkedVehicle.Where(v => v.RegNbr!.StartsWith(overviewViewModel.RegNbr));
+                _context.ParkedVehicle.Where(v => v.RegNbr!.StartsWith(indexViewModel.RegNbr));
 
-            parkedVehicles = overviewViewModel.VehicleType == null ?
+            parkedVehicles = indexViewModel.VehicleType == null ?
             parkedVehicles :
-            parkedVehicles.Where(v => v.Type == overviewViewModel.VehicleType);
+            parkedVehicles.Where(v => v.Type == indexViewModel.VehicleType);
 
-            var model = new OverviewViewModel
+            var model = new IndexViewModel
             {
                 ParkedVehicles = await parkedVehicles.ToListAsync()
 
             };
-            return View(nameof(Overview), model);
+            return View(nameof(Index), model);
         }
 
 
