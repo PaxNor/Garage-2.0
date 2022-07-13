@@ -20,6 +20,7 @@ namespace Garage_2._0.Models
         //[Remote()]
         public string? RegNbr  { get; set; }
 
+        [Required]
         [DisplayName("Färg")]
         public string? Color { get; set; }
 
