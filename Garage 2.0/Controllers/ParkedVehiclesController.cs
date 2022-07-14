@@ -158,7 +158,7 @@ namespace Garage_2._0.Controllers
                 {
                     _context.Update(parkedVehicle);
                     await _context.SaveChangesAsync();
-                    TempData["AlertMessage"] = "Fordonet har redigerats in utan problem!";
+                    TempData["AlertMessage"] = "Fordonet har redigerats utan problem!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
