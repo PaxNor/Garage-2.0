@@ -48,7 +48,7 @@ namespace Garage_2._0.Migrations
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)");
 
-                    b.Property<int>("Type")
+                    b.Property<int?>("Type")
                         .HasColumnType("int");
 
                     b.Property<int?>("wheelCount")
@@ -56,7 +56,7 @@ namespace Garage_2._0.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ParkedVehicle");
+                    b.ToTable("ParkedVehicle", (string)null);
                 });
 #pragma warning restore 612, 618
         }

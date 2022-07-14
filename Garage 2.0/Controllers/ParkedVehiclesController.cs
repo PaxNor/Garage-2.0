@@ -43,9 +43,10 @@ namespace Garage_2._0.Controllers
         // GET: ParkedVehicles
         public async Task<IActionResult> Index()
         {
+           // var vehicles = await _context.ParkedVehicle.ToListAsync();
             var model = new IndexViewModel()
             {
-                ParkedVehicles = await _context.ParkedVehicle.ToListAsync()
+                ParkedVehicles =  await _context.ParkedVehicle.ToListAsync()
             };
             return View(model);
         }
