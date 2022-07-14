@@ -118,6 +118,7 @@ namespace Garage_2._0.Controllers
             {
                 _context.Add(parkedVehicle);
                 await _context.SaveChangesAsync();
+                TempData["AlertMessage"] = "Fordonet har checkat in utan problem!";
                 return RedirectToAction(nameof(Index));
             }
             return View(parkedVehicle);
@@ -157,6 +158,7 @@ namespace Garage_2._0.Controllers
                 {
                     _context.Update(parkedVehicle);
                     await _context.SaveChangesAsync();
+                    TempData["AlertMessage"] = "Fordonet har redigerats in utan problem!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -209,6 +211,7 @@ namespace Garage_2._0.Controllers
             if (parkedVehicle != null) {
                 _context.ParkedVehicle.Remove(parkedVehicle);
                 await _context.SaveChangesAsync();
+                TempData["AlertMessage"] = "Fordonet har checkat ut utan problem!";
             }
             else
                 return NotFound();
