@@ -6,6 +6,15 @@
     ViewData["Active"] = "Index";
 }
 
+@if(TempData["AlertMessage"] != null)
+{
+    <div id = "alert" class = "alert alert-success">
+
+    @TempData["AlertMessage"]
+
+    </div>  
+}
+
 <h1>Garage</h1>
 
 <form class = "my-3" asp-action = "Filter" asp-controller = "ParkedVehicles" method = "get">
