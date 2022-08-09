@@ -28,7 +28,7 @@ namespace Garage_2._0.Models
         [DisplayName("Märke")]
         public string? Brand { get; set; }
 
-        [StringLength(30, MinimumLength = 3, ErrorMessage = "Namnet på modellen måste vara minst 3 och max 30 bokstäver långt!")]
+        [StringLength(30, MinimumLength = 2, ErrorMessage = "Namnet på modellen måste vara minst 2 och max 30 bokstäver långt!")]
         [DisplayName("Modell")]
         public string? Model { get; set; }
 
