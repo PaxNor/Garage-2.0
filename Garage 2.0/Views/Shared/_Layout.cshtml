@@ -3,6 +3,7 @@
     string overviewClass = string.Empty;
     string checkinClass = string.Empty;
     string privacyClass = string.Empty;
+    string createClass = string.Empty;
 
     switch (ViewData["Active"])
     {
@@ -17,6 +18,9 @@
         break;
         case  "Stats" :
             privacyClass = "active";
+        break;
+        case  "Create" :
+            createClass = "active";
         break;
     }       
 }
@@ -58,6 +62,13 @@
                             <a class="nav-link  @privacyClass" asp-area="" asp-controller="ParkedVehicles" asp-action="Stats">Statistik</a>
                         </li>
                     </ul>
+
+                    <ul class = "nav nav-pills dark ms-auto">
+                        <li class = "active">
+                            <a class ="nav-link" asp-controller="Members" asp-action="Create">Registrera medlem</a>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
         </nav>
