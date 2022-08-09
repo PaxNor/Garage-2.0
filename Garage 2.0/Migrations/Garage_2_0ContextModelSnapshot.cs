@@ -35,6 +35,7 @@ namespace Garage_2._0.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Color")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
