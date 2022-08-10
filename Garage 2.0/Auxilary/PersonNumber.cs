@@ -7,7 +7,7 @@ namespace Garage_2._0.Auxilary
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext) {
 
-            var errorMessage = "Ej giltigt personnummer, måste innehålla 12 siffror";
+            ErrorMessage = "Ej giltigt personnummer";
 
             Regex rgx = new Regex(@"\d{12}");
 
@@ -17,7 +17,11 @@ namespace Garage_2._0.Auxilary
                 if(rgx.IsMatch(input)) return ValidationResult.Success;
             }
 
-            return new ValidationResult(errorMessage);
+            return new ValidationResult(ErrorMessage);
+        }
+
+        public PersonNumber(String errorMessage) {
+            this.ErrorMessage = errorMessage;
         }
     }
 }
