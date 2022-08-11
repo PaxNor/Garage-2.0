@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Garage_2._0.Auxilary;
 using System.ComponentModel.DataAnnotations;
-
+using Garage_2._0.Validations;
 
 namespace Garage_2._0.Models
 {
@@ -14,6 +14,7 @@ namespace Garage_2._0.Models
         public string FirstName { get; set; }
 
         [DisplayName("Efternamn")]
+        [FullName(ErrorMessage = "Förnamn och Efternamn kan inte vara samma!")]
         public string LastName { get; set; }
 
         [DisplayName("Personnummer")]

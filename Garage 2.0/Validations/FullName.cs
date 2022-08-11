@@ -1,33 +1,34 @@
-﻿using Garage_2._0.ViewModels;
+﻿using Garage_2._0.Auxilary;
+using Garage_2._0.Models;
+using Garage_2._0.ViewModels;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace Garage_2._0.Validations
 {
     public class FullName : ValidationAttribute
     {
-        //protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
-        //{
-        //    if (value is string input)
-        //    {
-        //        //var input = value as string;
-        //        var viewModel = validationContext.ObjectInstance as MemberCreateViewModel;
-        //        //var db = validationContext.GetService(typeof(LexiconUniversityContext)) as LexiconUniversityContext;
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+        {
+            if (value is string input)
+            {
+                var model = validationContext.ObjectInstance as Member;
 
-        //        if (viewModel is not null)
-        //        {
-        //            if(viewModel.FirstName == input)
-        //            {
-        //                return new ValidationResult(ErrorMessage);
-        //            }
-        //            else
-        //            {
-        //                return ValidationResult.Success;
-        //            }
-        //        }
-        //    }
+                if(model is not null)
+                {
+                    if(model.FirstName != input)
+                    {
+                        return ValidationResult.Success;
+                    }
+                    else
+                    {
+                        return new ValidationResult(ErrorMessage);
+                    }
+                }
+                
+            }
 
-
-        //    return new ValidationResult(ErrorMessage);
-        //}
+            return new ValidationResult(ErrorMessage);
+        }
     }
 }
