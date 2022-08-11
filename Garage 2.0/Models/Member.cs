@@ -1,5 +1,8 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
+using Garage_2._0.Auxilary;
 using System.ComponentModel.DataAnnotations;
+
 
 namespace Garage_2._0.Models
 {
@@ -9,8 +12,10 @@ namespace Garage_2._0.Models
 
         [DisplayName("Förnamn")]
         public string FirstName { get; set; }
+
         [DisplayName("Efternamn")]
         public string LastName { get; set; }
+
         [DisplayName("Personnummer")]
         public string PersNr { get; set; }
 

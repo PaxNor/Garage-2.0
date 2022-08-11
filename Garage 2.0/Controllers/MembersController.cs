@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage_2._0.Data;
 using Garage_2._0.Models;
+using Garage_2._0.Auxilary;
 
 namespace Garage_2._0.Controllers
 {
@@ -18,6 +19,7 @@ namespace Garage_2._0.Controllers
         {
             _context = context;
         }
+
 
         // GET: Members
         public async Task<IActionResult> Index()
@@ -61,6 +63,7 @@ namespace Garage_2._0.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(member);
+                StringFormatter.CompactPersonNumber(member.PersNr);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
