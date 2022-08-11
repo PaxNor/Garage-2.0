@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage_2._0.Migrations.Garage_3_
 {
     [DbContext(typeof(Garage_3_Context))]
-    [Migration("20220809133645_fixed_error")]
-    partial class fixed_error
+    [Migration("20220809150406_OliverSecondMig")]
+    partial class OliverSecondMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
