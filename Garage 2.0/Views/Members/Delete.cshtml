@@ -4,9 +4,9 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Avregistrera</h1>
+<h1>Ta bort</h1>
 
-<h3>Är du säker på att avregistrera dig?</h3>
+<h3>Är du säker på att du vill ta bort denna medlem?</h3>
 <div>
     <h4>Medlem</h4>
     <hr />
@@ -33,7 +33,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Avregistrera" class="btn btn-danger" /> |
-        <a asp-action="Index">Tillbaka till lista</a>
+        <input type="submit" value="Ta bort" class="btn btn-danger" /> |
+        <a asp-action="Index">Tillbaka till garaget</a>
     </form>
 </div>
