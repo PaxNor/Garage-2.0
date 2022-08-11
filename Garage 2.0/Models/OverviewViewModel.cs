@@ -6,26 +6,21 @@ namespace Garage_2._0.Models
 {
     public class OverviewViewModel
     {
-        public int Id { get; set; }
-        public IEnumerable<ParkedVehicle> ParkedVehicles { get; set; } = new List<ParkedVehicle>();
-        public IEnumerable<SelectListItem> VehicleTypes { get; set; } = new List<SelectListItem>();
 
-        [Required]
+        [DisplayName("Medlem")]
+        public string? PersNr { get; set; }
+
         [DisplayName("Registreringsnummer")]
         public string? RegNbr { get; set; }
 
-        [Required]
-        [DisplayName("Fordonstyp")]
-        public VehicleTypes? VehicleType { get; set; }
+        [DisplayName("Färg")]
+        public string? Color { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
+        [DisplayName("Märke")]
+        public string? Brand { get; set; }
+
         [DisplayName("Ankomst")]
-        public DateTime ParkTime { get; set; }
-
-        [Required]
-        [DisplayName("Antal timmar parkerade")]
-        public double ParkedTime  { get; set; }
+        public DateTime Arrival { get; set; }
 
     }
 }

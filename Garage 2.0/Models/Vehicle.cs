@@ -9,9 +9,9 @@
         public string Brand { get; set; }
         public string Model { get; set; }
 
-        public VehicleType VehicleType { get; set; }
+        public VehicleType VehicleType { get; set; } = new VehicleType();
         public Parking? Parking { get; set; }
-        //public List<VehicleType> VehicleTypes { get; set; } = new List<VehicleType>();
+       
         public int MemberId { get; set; }
     }
 }

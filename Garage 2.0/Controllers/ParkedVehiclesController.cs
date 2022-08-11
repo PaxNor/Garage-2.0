@@ -46,31 +46,6 @@ namespace Garage_2._0.Controllers
             return View(model);
         }
 
-        //public async Task<IActionResult> Overview()
-        //{
-
-        //    var model = new OverviewViewModel()
-        //    {
-        //        ParkedVehicles = await _context.ParkedVehicle.ToListAsync()
-        //    };
-        //    return View(model);
-        //}
-
-        public async Task<IActionResult> Overview()
-        {
-            var vehicles = _context.ParkedVehicle;
-            var viewModel = await vehicles.Select(v => new OverviewViewModel
-            {
-                Id = v.Id,
-                VehicleType = v.Type,
-                ParkTime = v.ParkTime,
-                RegNbr = v.RegNbr,
-                ParkedTime = Math.Round((DateTime.Now - v.ParkTime).TotalHours, 1)
-            }).ToListAsync();
-
-            return View(viewModel);
-        }
-
         // GET: ParkedVehicles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
