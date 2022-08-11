@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage_2._0.Data;
 using Garage_2._0.Models;
+using Garage_2._0.ViewModels;
 
 namespace Garage_2._0.Controllers
 {
@@ -159,5 +160,21 @@ namespace Garage_2._0.Controllers
         {
           return (_context.Vehicle?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-    }
+        public async Task<IActionResult> GetReceipt(int vehicleId) 
+        {
+            var vehicle = await _context.Vehicle
+                .Include(v => v.VehicleType)
+                .Include(v => v.Parking)
+                .FirstOrDefaultAsync(v => v.Id == vehicleId);
+
+            var member = await _context.Member.FindAsync(vehicle.MemberId);
+
+            
+            var receipt = new ReceiptViewModel(vehicle.Parking.ArrivalTime, vehicle.RegNbr, vehicle.Color, vehicle.Brand, member.PersNr);
+            
+            return View();
+
+            // .../Vehicles/GetReceipt/1
+        }
+    }  
 }
