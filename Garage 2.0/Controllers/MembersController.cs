@@ -20,12 +20,12 @@ namespace Garage_2._0.Controllers
         }
 
         // GET: Members
-        public async Task<IActionResult> Index()
-        {
-              return _context.Member != null ? 
-                          View(await _context.Member.ToListAsync()) :
-                          Problem("Entity set 'Garage_3_Context.Member'  is null.");
-        }
+        //public async Task<IActionResult> Index()
+        //{
+        //      return _context.Member != null ? 
+        //                  View(await _context.Member.ToListAsync()) :
+        //                  Problem("Entity set 'Garage_3_Context.Member'  is null.");
+        //}
 
         // GET: Members/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -159,5 +159,54 @@ namespace Garage_2._0.Controllers
         {
           return (_context.Member?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
+        {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+            var members = from m in _context.Member
+                           select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                members = members.Where(m => m.LastName.Contains(searchString)
+                                       || m.FirstName.Contains(searchString));
+            }
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    members = members.OrderByDescending(m => m.FirstName);
+                    break;
+                
+                default:
+                    members = members.OrderBy(m => m.FirstName);
+                    break;
+            }
+            int pageSize = 3;
+            return View(await PaginatedList<Member>.CreateAsync(members.AsNoTracking(), pageNumber ?? 1, pageSize));
+
+
+
+            //var memmbers = _context.Member.OrderBy(m => m.FirstName.Substring(0, 2));
+
+        }
+
+
+
+
     }
 }

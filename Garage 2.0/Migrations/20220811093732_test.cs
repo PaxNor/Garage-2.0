@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Garage_2._0.Migrations.Garage_3_
+namespace Garage_2._0.Migrations
 {
-    public partial class garage3 : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,17 +25,16 @@ namespace Garage_2._0.Migrations.Garage_3_
                 });
 
             migrationBuilder.CreateTable(
-                name: "Parking",
+                name: "VehicleType",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    VehicleId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Parking", x => x.Id);
+                    table.PrimaryKey("PK_VehicleType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -61,22 +60,28 @@ namespace Garage_2._0.Migrations.Garage_3_
                         principalTable: "Member",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Vehicle_VehicleType_VehicleTypeId",
+                        column: x => x.VehicleTypeId,
+                        principalTable: "VehicleType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "VehicleType",
+                name: "Parking",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     VehicleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VehicleType", x => x.Id);
+                    table.PrimaryKey("PK_Parking", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_VehicleType_Vehicle_VehicleId",
+                        name: "FK_Parking_Vehicle_VehicleId",
                         column: x => x.VehicleId,
                         principalTable: "Vehicle",
                         principalColumn: "Id");
@@ -86,47 +91,22 @@ namespace Garage_2._0.Migrations.Garage_3_
                 name: "IX_Parking_VehicleId",
                 table: "Parking",
                 column: "VehicleId",
-                unique: true);
+                unique: true,
+                filter: "[VehicleId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehicle_MemberId",
                 table: "Vehicle",
-                column: "MemberId",
-                unique: true);
+                column: "MemberId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehicle_VehicleTypeId",
                 table: "Vehicle",
                 column: "VehicleTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VehicleType_VehicleId",
-                table: "VehicleType",
-                column: "VehicleId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Parking_Vehicle_VehicleId",
-                table: "Parking",
-                column: "VehicleId",
-                principalTable: "Vehicle",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Vehicle_VehicleType_VehicleTypeId",
-                table: "Vehicle",
-                column: "VehicleTypeId",
-                principalTable: "VehicleType",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_VehicleType_Vehicle_VehicleId",
-                table: "VehicleType");
-
             migrationBuilder.DropTable(
                 name: "Parking");
 
