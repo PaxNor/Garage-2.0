@@ -211,12 +211,13 @@ namespace Garage_2._0.Controllers
             else
                 return NotFound();
           
-            var receipt = new ReceiptViewModel(parkedVehicle.ParkTime,
-                                               parkedVehicle.RegNbr!,
-                                               parkedVehicle.Color!,
-                                               parkedVehicle.Brand!);
+            //var receipt = new ReceiptViewModel(parkedVehicle.ParkTime,
+            //                                   parkedVehicle.RegNbr!,
+            //                                   parkedVehicle.Color!,
+            //                                   parkedVehicle.Brand!,
+            //                                   member.PersNr!);
 
-            return View("Receipt", receipt);
+            return View("Receipt"/*, receipt*/);
         }
 
         public IActionResult Stats() {
