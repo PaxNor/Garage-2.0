@@ -15,7 +15,7 @@ namespace Garage_2._0.Migrations.Garage_3_
     [Migration("20220809150406_OliverSecondMig")]
     partial class OliverSecondMig
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
