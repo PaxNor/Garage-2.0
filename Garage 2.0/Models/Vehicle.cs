@@ -7,8 +7,8 @@ namespace Garage_2._0.Models
     {
         public int Id { get; set; }
 
-        [RegularExpression(@"[a-Z0-9 ]", ErrorMessage = "Endast siffror och bokstäver")]
-        //[StringLength(12)]
+        [RegularExpression(@"[A-z0-9 ]*", ErrorMessage = "Endast siffror och bokstäver")]
+        [Required(ErrorMessage = "Ange ett registreringsnummer")]
         [DisplayName("Resistreringsnummer")]
         public string RegNbr { get; set; }
 
